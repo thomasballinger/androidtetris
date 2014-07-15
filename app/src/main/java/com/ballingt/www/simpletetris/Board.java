@@ -1,5 +1,9 @@
 package com.ballingt.www.simpletetris;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+
 public class Board {
 
     int width;
@@ -22,7 +26,7 @@ public class Board {
     }
 
     int[][] repr(Boolean with_cur_piece){
-        int[][] board = new int[8][5];
+        int[][] board = new int[10][10];
 
         for (int i = 0; i < pieces.size(); i++){
             for (int j = 0; j < 4; j++){
