@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -40,12 +41,21 @@ public class TetrisActivity extends Activity {
         }
     }
 
+//    @Override
+//    protected void onStart()
+//    {
+//        // TODO Auto-generated method stub
+//        super.onStart();
+//        setUp();
+//    }
+
+
     @Override
-    protected void onStart()
-    {
+    public void onWindowFocusChanged(boolean hasFocus) {
         // TODO Auto-generated method stub
-        super.onStart();
+        super.onWindowFocusChanged(hasFocus);
         setUp();
+        //Here you can get the size!
     }
 
     public void setUp() {
@@ -54,16 +64,15 @@ public class TetrisActivity extends Activity {
 
         display = (TextView) mainView.findViewById(R.id.helloworld);
         TableLayout table = (TableLayout) findViewById(R.id.board);
-        Log.d("tomstuff", "table" + table.toString());
         for (int i = 0; i < numRows; i++){
             TableRow row = new TableRow(this);
             grid.add(new ArrayList<Button>());
             for (int j = 0; j < numCols; j++){
                 Button b = new Button(this);
                 b.setBackgroundColor(Color.BLUE);
-                b.setWidth(table.getWidth() / numCols);
-                b.setHeight(table.getHeight() / numRows);
                 row.addView(b);
+                b.getLayoutParams().width = table.getWidth() / numCols;
+                b.getLayoutParams().height = table.getHeight() / numRows;
                 grid.get(i).add(b);
             }
             table.addView(row);

@@ -26,7 +26,7 @@ public class Board {
     }
 
     int[][] repr(Boolean with_cur_piece){
-        int[][] board = new int[10][10];
+        int[][] board = new int[this.height][this.width];
 
         for (int i = 0; i < pieces.size(); i++){
             for (int j = 0; j < 4; j++){
