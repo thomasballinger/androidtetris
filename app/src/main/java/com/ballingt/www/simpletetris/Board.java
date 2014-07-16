@@ -44,39 +44,45 @@ public class Board {
 
     void rotate(){
         cur_piece.rotate_right();
-        int[][] locs = cur_piece.locations();
-        int[][] board = repr(false);
-
-        for (int i = 0; i < 4; i++) {
-            // check for all borders in the future
-            Log.d("rotateCheck", "i is " + i);
-            Log.d("rotateCheck", "row of cur square" + locs[i][0]);
-            if (locs[i][0] >= height || board[locs[i][0]][locs[i][1]] != 0){
-                // collision detected, rotate right 3x to return to orig pos
-                Log.d("rotateCheck", ""+locs[i][0]);
-                for (int j = 0 ; j < 3; j++) {
-                    cur_piece.rotate_right();
-                }
-                break;
+        if (!currentPieceOverlaps()){
+            for (int j = 0 ; j < 3; j++) {
+                cur_piece.rotate_right();
             }
-
         }
-
     }
 
     void moveDown(){
         cur_piece.row += 1;
+        if (currentPieceOverlaps()) {
+            cur_piece.row -= 1;
+            pieces.add(cur_piece);
+            cur_piece = new Piece();
+        }
+    }
+
+    boolean currentPieceOverlaps(){
         int[][] locs = cur_piece.locations();
         int[][] board = repr(false);
         for (int i = 0; i < 4; i++){
-            Log.d("yay", "each" + i);
-            if (locs[i][0] >= height || board[locs[i][0]][locs[i][1]] != 0){
-                Log.d("yay", "in" + i + ":" + locs[i][0] + ", " + locs[i][1]);
-                cur_piece.row -= 1;
-                pieces.add(cur_piece);
-                cur_piece = new Piece();
-                break;
+            if (locs[i][0] >= height || locs[i][1] < 0 || locs[i][1] >= width ||
+                board[locs[i][0]][locs[i][1]] != 0){
+                return true;
             }
+        }
+        return false;
+    }
+
+    void moveLeft(){
+        cur_piece.col -= 1;
+        if (currentPieceOverlaps()){
+            cur_piece.col += 1;
+        }
+    }
+
+    void moveRight(){
+        cur_piece.col += 1;
+        if (currentPieceOverlaps()){
+            cur_piece.col -= 1;
         }
     }
 }

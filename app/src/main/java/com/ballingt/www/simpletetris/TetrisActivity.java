@@ -84,6 +84,14 @@ public class TetrisActivity extends Activity {
         board.moveDown();
         updateGrid(board.repr());
     }
+    public void left(View downButton){
+        board.moveLeft();
+        updateGrid(board.repr());
+    }
+    public void right(View downButton){
+        board.moveRight();
+        updateGrid(board.repr());
+    }
 
     public void rotate(View downButton){
         board.rotate();

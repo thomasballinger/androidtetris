@@ -38,11 +38,29 @@
         android:layout_weight="0.12"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:text="move down"
-        android:layout_width="94dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="63dp"
-        android:onClick="down"
-        android:layout_gravity="center_horizontal" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="0dp">
+        <Button
+            android:text="move left"
+            android:layout_width="94dp"
+            android:layout_height="63dp"
+            android:onClick="left" />
+        <Button
+            android:text="move down"
+            android:layout_width="94dp"
+            android:layout_height="63dp"
+            android:onClick="down" />
+        <Button
+            android:text="move right"
+            android:layout_width="94dp"
+            android:layout_height="63dp"
+            android:onClick="right" />
+
+
+    </LinearLayout>
 
 </LinearLayout>
